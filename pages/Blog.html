@@ -36,11 +36,27 @@
     </main>
     <!--Footer-->
     <footer>
-        <p>&copy; 2025 YouthConnect SA. All rights reserved</p>
+       <p>&copy; <span id="currentYear"></span> YouthConnect SA. All rights reserved.</p>
         <p><a href="Contact us.html">Contact Us</a>
             <a href="https://facebook">Facebook</a>
             <a href="https://instagram">Instagram</a></p>
         </footer>
-        <script src="script.js"></script>
+
+       <script>
+
+        // Display live date and time
+        const dateElement = document.getElementById("currentDateTime");
+        function updateDateTime() {
+            const now = new Date();
+            dateElement.textContent = now.toLocaleString();
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+
+
+    </script>
 </body>
 </html>
