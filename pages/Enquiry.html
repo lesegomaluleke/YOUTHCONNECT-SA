@@ -29,6 +29,11 @@
             <h1>Get in Touch</h1>
             <p>Have questions about our programmes, events, or services? Fill out the form below and our team will get back to you as soon as possible.</p>
         </div>
+           <div class="container">
+        <div class="page-header">
+            <h1>Get in Touch</h1>
+            <p>Have questions about our programmes, events, or services? Fill out the form below and our team will get back to you as soon as possible.</p>
+        </div>
         
         <div class="form-container">
             <form id="enquiryForm">
@@ -36,21 +41,25 @@
                     <div class="form-group">
                         <label for="firstName" class="required">First Name</label>
                         <input type="text" id="firstName" name="firstName">
+                        <div class="error-message" id="firstName-error">Please enter your first name</div>
                     </div>
                     <div class="form-group">
                         <label for="lastName" class="required">Last Name</label>
                         <input type="text" id="lastName" name="lastName">
+                        <div class="error-message" id="lastName-error">Please enter your last name</div>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="email" class="required">Email Address</label>
                     <input type="email" id="email" name="email">
+                    <div class="error-message" id="email-error">Please enter a valid email address</div>
                 </div>
                 
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" name="phone">
+                    <div class="error-message" id="phone-error">Please enter a valid phone number</div>
                 </div>
                 
                 <div class="form-group">
@@ -76,11 +85,13 @@
                         <option value="volunteer">Volunteering</option>
                         <option value="other">Other</option>
                     </select>
+                    <div class="error-message" id="enquiryType-error">Please select an enquiry type</div>
                 </div>
                 
                 <div class="form-group">
                     <label for="message" class="required">Your Message</label>
                     <textarea id="message" name="message" placeholder="Please provide details about your enquiry..."></textarea>
+                    <div class="error-message" id="message-error">Please enter your message</div>
                 </div>
                 
                 <div class="form-group">
@@ -97,16 +108,37 @@
                 </div>
                 
                 <button type="submit" class="submit-btn">Submit Enquiry</button>
+                
+                <div class="form-footer">
+                    <p><span class="required"></span> indicates required fields</p>
+                </div>
             </form>
-            
-            <div class="contact-info">
-                <h3>Other Ways to Reach Us</h3>
-                <p><strong>Email:</strong> info@youthconnectsa.org</p>
-                <p><strong>Phone:</strong> +27 11 123 4567</p>
-                <p><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
-                <p>For urgent matters, please call our helpline: +27 11 123 4568</p>
-            </div>
         </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup-overlay" id="success-popup">
+        <div class="popup success">
+            <div class="popup-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Enquiry Submitted Successfully!</h3>
+            <p>Thank you for contacting us. We'll get back to you within 2 business days.</p>
+            <button class="popup-btn" id="success-close">OK</button>
+        </div>
+    </div>
+
+    <!-- Error Popup -->
+    <div class="popup-overlay" id="error-popup">
+        <div class="popup error">
+            <div class="popup-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <h3>Form Incomplete</h3>
+            <p id="error-message">Please fill in all required fields correctly.</p>
+            <button class="popup-btn" id="error-close">OK</button>
+        </div>
+    </div>
     </main>
     
      <footer>
@@ -137,7 +169,173 @@
         updateDateTime();
         setInterval(updateDateTime, 1000);
 
-    
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('enquiryForm');
+            const successPopup = document.getElementById('success-popup');
+            const errorPopup = document.getElementById('error-popup');
+            const successClose = document.getElementById('success-close');
+            const errorClose = document.getElementById('error-close');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Form validation
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                let errorFields = [];
+                
+                // Validate first name
+                const firstName = document.getElementById('firstName');
+                const firstNameError = document.getElementById('firstName-error');
+                if (firstName.value.trim() === '') {
+                    firstName.classList.add('error');
+                    firstNameError.style.display = 'block';
+                    isValid = false;
+                    errorFields.push('First Name');
+                } else {
+                    firstName.classList.remove('error');
+                    firstNameError.style.display = 'none';
+                }
+                
+                // Validate last name
+                const lastName = document.getElementById('lastName');
+                const lastNameError = document.getElementById('lastName-error');
+                if (lastName.value.trim() === '') {
+                    lastName.classList.add('error');
+                    lastNameError.style.display = 'block';
+                    isValid = false;
+                    errorFields.push('Last Name');
+                } else {
+                    lastName.classList.remove('error');
+                    lastNameError.style.display = 'none';
+                }
+                
+                // Validate email
+                const email = document.getElementById('email');
+                const emailError = document.getElementById('email-error');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value.trim())) {
+                    email.classList.add('error');
+                    emailError.style.display = 'block';
+                    isValid = false;
+                    errorFields.push('Email Address');
+                } else {
+                    email.classList.remove('error');
+                    emailError.style.display = 'none';
+                }
+                
+                // Validate phone (optional but if provided, must be valid)
+                const phone = document.getElementById('phone');
+                const phoneError = document.getElementById('phone-error');
+                const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+                if (phone.value.trim() !== '' && !phoneRegex.test(phone.value.trim().replace(/[-\s\(\)]/g, ''))) {
+                    phone.classList.add('error');
+                    phoneError.style.display = 'block';
+                    isValid = false;
+                    errorFields.push('Phone Number');
+                } else {
+                    phone.classList.remove('error');
+                    phoneError.style.display = 'none';
+                }
+                
+                // Validate enquiry type
+                const enquiryType = document.getElementById('enquiryType');
+                const enquiryTypeError = document.getElementById('enquiryType-error');
+                if (!enquiryType.value) {
+                    enquiryType.classList.add('error');
+                    enquiryTypeError.style.display = 'block';
+                    isValid = false;
+                    errorFields.push('Enquiry Type');
+                } else {
+                    enquiryType.classList.remove('error');
+                    enquiryTypeError.style.display = 'none';
+                }
+                
+                // Validate message
+                const message = document.getElementById('message');
+                const messageError = document.getElementById('message-error');
+                if (message.value.trim() === '') {
+                    message.classList.add('error');
+                    messageError.style.display = 'block';
+                    isValid = false;
+                    errorFields.push('Message');
+                } else {
+                    message.classList.remove('error');
+                    messageError.style.display = 'none';
+                }
+                
+                // If form is valid, show success popup and submit via mailto
+                if (isValid) {
+                    // Show success popup
+                    successPopup.classList.add('active');
+                    
+                    // Prepare mailto link
+                    const emailBody = `
+First Name: ${firstName.value}
+Last Name: ${lastName.value}
+Email: ${email.value}
+Phone: ${phone.value || 'Not provided'}
+Age Group: ${ageGroup.options[ageGroup.selectedIndex].text}
+Enquiry Type: ${enquiryType.options[enquiryType.selectedIndex].text}
+How did you hear about us: ${howHeard.options[howHeard.selectedIndex].text}
+
+Message:
+${message.value}
+                    `;
+                    
+                    const mailtoLink = `mailto:contact@youthempowerment.org?subject=Enquiry: ${enquiryType.options[enquiryType.selectedIndex].text}&body=${encodeURIComponent(emailBody)}`;
+                    
+                    // Open email client
+                    window.location.href = mailtoLink;
+                    
+                    // Reset form
+                    form.reset();
+                } else {
+                    // Show error popup with specific message
+                    let errorText = 'Please fill in the following required fields: ' + errorFields.join(', ');
+                    errorMessage.textContent = errorText;
+                    errorPopup.classList.add('active');
+                }
+            });
+            
+            // Close success popup
+            successClose.addEventListener('click', function() {
+                successPopup.classList.remove('active');
+            });
+            
+            // Close error popup
+            errorClose.addEventListener('click', function() {
+                errorPopup.classList.remove('active');
+            });
+            
+            // Close popups when clicking outside
+            successPopup.addEventListener('click', function(e) {
+                if (e.target === successPopup) {
+                    successPopup.classList.remove('active');
+                }
+            });
+            
+            errorPopup.addEventListener('click', function(e) {
+                if (e.target === errorPopup) {
+                    errorPopup.classList.remove('active');
+                }
+            });
+            
+            // Real-time validation for optional phone field
+            const phone = document.getElementById('phone');
+            const phoneError = document.getElementById('phone-error');
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            
+            phone.addEventListener('blur', function() {
+                if (phone.value.trim() !== '' && !phoneRegex.test(phone.value.trim().replace(/[-\s\(\)]/g, ''))) {
+                    phone.classList.add('error');
+                    phoneError.style.display = 'block';
+                } else {
+                    phone.classList.remove('error');
+                    phoneError.style.display = 'none';
+                }
+            });
+        });    
     
 
     </script>
