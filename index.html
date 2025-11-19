@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
- <!--Header Section-->
+    <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouthConnect SA|Home</title>
+    <title>YouthConnect SA | Empowering Youth in South Africa</title>
+    <meta name="description" content="YouthConnect SA empowers South African youth aged 15–30 through mentorship, training, and career support.">
+    <meta name="keywords" content="YouthConnect, South Africa Youth, Youth Mentorship, Skills Development, Career Support">
+    <meta name="author" content="YouthConnect SA">
     <link rel="stylesheet" href="./css/styles.css">
-</head>
+    </head>
 <body>
     <header>
         <!--navigation-->
         <nav>
             <ul>
-               <li><a href="index.html">Home</a></li>
-               <li><a href="./pages/about us.html">About Us</a></li>
-               <li><a href="./pages/programmes.html">Programmes</a></li>
-               <li><a href="./pages/events.html">Events</a></li>
-               <li><a href="./pages/blog.html">Blog</a></li>
-               <li><a href="./pages/donate.html">Donate</a></li>
-               <li><a href="./pages/contact us.html">Contact Us</a></li>
+              <li><a href="../index.html">Home</a></li>
+                <li><a href="/pages/About us.html">About</a></li>
+                <li><a href="/pages/Programmes.html">Programmes</a></li>
+                <li><a href="/pages/Events.html">Events</a></li>
+                <li><a href="/pages/Donate.html">Donate</a></li>
+                <li><a href="/pages/Contact us.html">Contact Us</a></li>
+                <li><a href="/pages/Enquiry.html">Enquiry</a></li>
             </ul>
         </nav>
     </header>
@@ -30,7 +32,7 @@
              <a href="/pages/programmes.html">Join Our Programmes</a>
             <div class="social-feed">
                 <h3>Follow Us on Social Media</h3>
-                <a href="https://facebook.com">Facebook</a> | <a href="https://instagram.com">Instagram</a>
+                <a href="https://facebook.com" target="_blank">Facebook</a> | <a href="https://instagram.com" target="_blank">Instagram</a>
             </div>
         </section>
         <!--Programmes Preview-->
@@ -49,17 +51,23 @@
             <p>Connect with industry leaders for one-on-one support.</p>
             </div>
         </div>
-        </section>
-        <section id="news">
-            <h2>Latest News</h2>
-            <p>Read Thandi's success story in our <a href="blog.html">blog</a>!</p>
-        </section>
     </main>
+
     <!--Footer-->
-    <footer>
+     <footer>
+                <!-- time and date -->
+         <div class="time and date">
+            <div class="card time-card">
+                <h3>Current Date & Time</h3>
+                <p id="currentDateTime"></p>
+            </div>
+         </div>
         <p>&copy; <span id="currentYear"></span> YouthConnect SA. All rights reserved.</p>
-        <p><a href="contact us.html">Contact Us</a> | <a href="
-            https://facebook.com">Facebook</a> | <a href="https://instagram.com">Instagram</a></p>
+        <p>
+            <a href="/pages/Contact us.html">Contact Us</a>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+        </p>
     </footer>
 
     <script>
@@ -72,9 +80,8 @@
         updateDateTime();
         setInterval(updateDateTime, 1000);
 
+       // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-
 
     </script>
 </body>

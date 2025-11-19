@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!--Header Section-->
+ <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YoungConnect SA|Programmes</title>
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
+    <title>YouthConnect SA | Empowering Youth in South Africa</title>
+    <meta name="description" content="YouthConnect SA empowers South African youth aged 15–30 through mentorship, training, and career support.">
+    <meta name="keywords" content="YouthConnect, South Africa Youth, Youth Mentorship, Skills Development, Career Support">
+    <meta name="author" content="YouthConnect SA">
+    <link rel="stylesheet" href="/css/Styles.css">
+    </head>
 <body>
     <header>
         <!--Navigation Bar-->
         <nav>
             <ul>
                <li><a href="../index.html">Home</a></li>
-               <li><a href="about us.html">About Us</a></li>
-               <li><a href="programmes.html">Programmes</a></li>
-               <li><a href="events.html">Events</a></li>
-               <li><a href="blog.html">Blog</a></li>
-               <li><a href="donate.html">Donate</a></li>
-               <li><a href="contact us.html">Contact Us</a></li>
+                <li><a href="About us.html">About</a></li>
+                <li><a href="Programmes.html">Programmes</a></li>
+                <li><a href="Events.html">Events</a></li>
+                <li><a href="Donate.html">Donate</a></li>
+                <li><a href="Contact us.html">Contact Us</a></li>
+                <li><a href="Enquiry.html">Enquiry</a></li>
             </ul>
         </nav>
     </header>
@@ -45,11 +47,11 @@
             </div>
             </div>
             <h2>Register Now</h2>
-            <form action="#" method="post">
+            <form class="programme form" action="#" method="post">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="email" required>
+                <input type="text" id="name" name="email">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email">
                 <label for="programme">Programme:</label>
                 <select id="programme" name="programme" required>
                 <option value="career">Career Counseling</option>
@@ -61,8 +63,16 @@
             </form>
         </section>
     </main>
+
     <!--Footer-->
     <footer>
+               <!-- time and date -->
+         <div class="time and date">
+            <div class="card time-card">
+                <h3>Current Date & Time</h3>
+                <p id="currentDateTime"></p>
+            </div>
+         </div>
        <p>&copy; <span id="currentYear"></span> YouthConnect SA. All rights reserved.</p>
         <p><a href="Contact us.html">Contact Us</a>
         <a href="https://facebook">Facebook</a>
@@ -81,6 +91,31 @@
 
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+// Function to handle the form submission
+document.querySelector('.programme.form').addEventListener('submit', function(event) {
+    // Prevent the default form submission (page reload)
+    event.preventDefault();
+
+    // Get form data
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const programme = document.getElementById('programme').value;
+
+    // Simple validation (you can expand this as needed)
+    if (!name || !email || !programme) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    // Simulate form submission (you can replace this with an actual request)
+    // For example, using fetch() to send data to a server
+
+    // Display a confirmation message
+    alert(`Thank you, ${name}! Your registration for the ${programme} programme has been received.`);
+
+    // Optionally, clear the form after submission
+    document.querySelector('.programme.form').reset();
+});
 
 
     </script>

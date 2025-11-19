@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouthConnect SA | Empowering Youth in South Africa</title>
+    <meta name="description" content="YouthConnect SA empowers South African youth aged 15–30 through mentorship, training, and career support.">
+    <meta name="keywords" content="YouthConnect, South Africa Youth, Youth Mentorship, Skills Development, Career Support">
+    <meta name="author" content="YouthConnect SA">
+    <link rel="stylesheet" href="/css/Styles.css">
+    </head>
+<body>
+    <header>
+        <!--Navigation Bar-->
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="About us.html">About</a></li>
+                <li><a href="Programmes.html">Programmes</a></li>
+                <li><a href="Events.html">Events</a></li>
+                <li><a href="Donate.html">Donate</a></li>
+                <li><a href="Contact us.html">Contact Us</a></li>
+                <li><a href="Enquiry.html">Enquiry</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="page-header">
+            <h1>Get in Touch</h1>
+            <p>Have questions about our programmes, events, or services? Fill out the form below and our team will get back to you as soon as possible.</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="enquiryForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="required">First Name</label>
+                        <input type="text" id="firstName" name="firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="required">Last Name</label>
+                        <input type="text" id="lastName" name="lastName">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="required">Email Address</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="ageGroup">Age Group</label>
+                    <select id="ageGroup" name="ageGroup">
+                        <option value="">Select your age group</option>
+                        <option value="15-18">15-18 years</option>
+                        <option value="19-24">19-24 years</option>
+                        <option value="25-30">25-30 years</option>
+                        <option value="30+">30+ years</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="enquiryType" class="required">Enquiry Type</label>
+                    <select id="enquiryType" name="enquiryType">
+                        <option value="">Select enquiry type</option>
+                        <option value="mentorship">Mentorship Programme</option>
+                        <option value="training">Skills Training</option>
+                        <option value="career">Career Support</option>
+                        <option value="events">Events</option>
+                        <option value="partnership">Partnership Opportunities</option>
+                        <option value="volunteer">Volunteering</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="required">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Please provide details about your enquiry..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="howHeard">How did you hear about us?</label>
+                    <select id="howHeard" name="howHeard">
+                        <option value="">Select an option</option>
+                        <option value="social-media">Social Media</option>
+                        <option value="friend">Friend/Family</option>
+                        <option value="school">School/University</option>
+                        <option value="search">Online Search</option>
+                        <option value="event">Event</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Enquiry</button>
+            </form>
+            
+            <div class="contact-info">
+                <h3>Other Ways to Reach Us</h3>
+                <p><strong>Email:</strong> info@youthconnectsa.org</p>
+                <p><strong>Phone:</strong> +27 11 123 4567</p>
+                <p><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
+                <p>For urgent matters, please call our helpline: +27 11 123 4568</p>
+            </div>
+        </div>
+    </main>
+    
+     <footer>
+    <!-- time and date -->
+         <div class="time and date">
+            <div class="card time-card">
+                <h3>Current Date & Time</h3>
+                <p id="currentDateTime"></p>
+            </div>
+         </div>
+        <p>&copy; <span id="currentYear"></span> YouthConnect SA. All rights reserved.</p>
+        <p>
+            <a href="Contact us.html">Contact Us</a>
+            <a href="https://facebook.com">Facebook</a>
+            <a href="https://instagram.com">Instagram</a>
+        </p>
+    </footer>
+  <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+     // Display live date and time
+        const dateElement = document.getElementById("currentDateTime");
+        function updateDateTime() {
+            const now = new Date();
+            dateElement.textContent = now.toLocaleString();
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+    
+    
+
+    </script>
+</body>
+</html>
